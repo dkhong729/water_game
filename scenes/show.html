@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phaser Start Screen</title>
+    <!-- 引入 Phaser 库 -->
+    <script src="phaser.min.js"></script>
+</head>
+<body>
+    <!-- 创建一个容器，用于嵌入 Phaser 游戏 -->
+    <div id="game-container"></div>
+
+    <script>
+        // 定义 StartScreen 类
+        class StartScreen extends Phaser.Scene {
+            constructor() {
+                super({ key: 'StartScreen' });
+            }
+
+            preload() {
+                // 在这里加载初始画面需要的资源
+                this.load.image('map', 'CEarth_map.png');
+                this.load.image('title', 'CTitle.png');
+                this.load.image('warning', 'CWarning.png');
+                this.load.image('progress', 'CProgress.png');
+                this.load.image('reward', 'CReward.png');
+            }
+
+            create() {
+                // 创建背景图像并缩小十倍
+                this.add.image(600, 337, 'map').setScale(0.2);
+
+                // 创建标题图像并缩小十倍
+                this.add.image(200, 70, 'title').setScale(0.15);
+
+                // 创建警告图像并缩小十倍
+                this.add.image(500, 400, 'warning').setScale(0.08);
+
+                // 创建奖励图像并缩小十倍
+                this.add.image(1000, 600, 'reward').setScale(0.08);
+
+                // 创建进度图像并缩小十倍
+                this.add.image(150, 600, 'progress').setScale(0.15);
+            }
+        }
+        // 创建一个 Phaser 游戏实例
+        const game = new Phaser.Game({
+            type: Phaser.AUTO,
+            width: 1200,
+            height: 675,
+            parent: 'game-container', // 指定游戏容器的 id
+            scene: [StartScreen], // 将 StartScreen 场景添加到游戏中
+        });
+    </script>
+</body>
+</html>
